@@ -1,24 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-g">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brain Tumor Detection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Brain Tumor Detection from MRI Scans</h1>
-        <p>Upload an MRI image to predict if a tumor is present.</p>
-        <div class="card">
-            <input type="file" id="file-input" accept="image/*">
-            <button id="predict-button">Predict</button>
+
+    <div class="card">
+        <div class="card-header">
+            <h1>Brain Tumor MRI Detection</h1>
+            <p>Upload an MRI scan to detect the presence of a tumor.</p>
         </div>
-        <div id="result-container">
-            <h2>Prediction Result:</h2>
-            <p id="result-text">---</p>
+
+        <div class="card-body">
+            <!-- Hidden real file input -->
+            <input type="file" id="file-input" accept="image/*" hidden>
+            
+            <!-- Custom upload button -->
+            <label for="file-input" class="upload-label">
+                📤 Choose an Image
+            </label>
+            
+            <div id="image-preview" class="image-preview-container hidden">
+                <img src="" alt="Image Preview" id="preview-img">
+                <span id="file-name"></span>
+            </div>
+
+            <button id="predict-button" disabled>Predict</button>
+        </div>
+
+        <div class="card-footer hidden" id="result-container">
+            <div id="loader" class="loader hidden"></div>
+            <div id="result-content">
+                <h3>Result</h3>
+                <p id="result-text"></p>
+            </div>
         </div>
     </div>
+
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
